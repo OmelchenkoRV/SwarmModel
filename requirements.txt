@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+numpy
+azure-identity
+azure-mgmt-resource
