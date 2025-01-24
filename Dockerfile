@@ -1,11 +1,11 @@
-FROM python:3.12-slim
+# To enable ssh & remote debugging on app service change the base image to the one below
+# FROM mcr.microsoft.com/azure-functions/python:4-python3.12-appservice
+FROM mcr.microsoft.com/azure-functions/python:4-python3.12
 
-WORKDIR /app
+ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
+    AzureFunctionsJobHost__Logging__Console__IsEnabled=true
 
-COPY requirements.txt .
+COPY requirements.txt /
+RUN pip install -r /requirements.txt
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
-
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+COPY . /home/site/wwwroot
