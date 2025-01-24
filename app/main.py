@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from app.models.request import SimulationRequest
 from app.services.simulation import run_simulation
 
-app = FastAPI()
+app = FastAPI(docs_url="/docs", redoc_url="/redoc")
 
 
 @app.post("/simulate")
