@@ -1,10 +1,11 @@
 from fastapi import FastAPI
 from app.models.request import SimulationRequest
 from app.services.simulation import run_simulation
+import azure.functions as func
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
-app = FastAPI(docs_url="/docs", redoc_url="/redoc")
+app = FastAPI()
 
 
 @app.post("/simulate")
@@ -13,7 +14,13 @@ def simulate(request: SimulationRequest):
     return {"success": True, "result": result}
 
 
-if __name__ == "__main__":
-    import uvicorn
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    body = req.get_json()
+    simulation_request = SimulationRequest(**body)
+    result = run_simulation(simulation_request.transition_matrix, simulation_request.steps)
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    return func.HttpResponse(body=result, mimetype="application/json")
+
+
+
+

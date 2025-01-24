@@ -4,3 +4,4 @@ numpy~=2.2.2
 azure-identity
 azure-mgmt-resource
 pydantic~=2.10.6
+azure-functions
