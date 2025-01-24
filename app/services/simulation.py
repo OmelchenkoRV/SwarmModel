@@ -1,4 +1,4 @@
-from markov_model import MarkovChain
+from app.services.markov_model import MarkovChain
 
 
 def run_simulation(matrix, steps):
