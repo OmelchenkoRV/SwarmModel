@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from app.models.request import SimulationRequest
 from app.services.simulation import run_simulation
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 app = FastAPI(docs_url="/docs", redoc_url="/redoc")
 
