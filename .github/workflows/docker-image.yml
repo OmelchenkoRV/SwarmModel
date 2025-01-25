@@ -25,7 +25,7 @@ jobs:
 
     - name: Build the Docker image
       run: |
-        docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+        run: docker build . --file Dockerfile --tag omelchenkorvcontainerregistry.azurecr.io/my-fastapi-app:latest
 
     - name: Push to Azure Container Registry
       run: |
