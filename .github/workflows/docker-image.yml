@@ -2,26 +2,33 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-
   build:
+    runs-on: ubuntu-latest
 
-    runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v2
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.12'
+
     - name: Login to Azure
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: |
+        docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+    - name: Push to Azure Container Registry
+      run: |
+        az acr login --name omelchenkorvcontainerregistry
+        docker tag my-image-name:$(date +%s) omelchenkorvcontainerregistry.azurecr.io/my-image-name:latest
+        docker push omelchenkorvcontainerregistry.azurecr.io/my-image-name:latest
