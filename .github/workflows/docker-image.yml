@@ -24,8 +24,7 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Build the Docker image
-      run: |
-        run: docker build . --file Dockerfile --tag omelchenkorvcontainerregistry.azurecr.io/my-fastapi-app:latest
+      run: docker build . --file Dockerfile --tag omelchenkorvcontainerregistry.azurecr.io/my-fastapi-app:latest
 
     - name: Push to Azure Container Registry
       run: |
