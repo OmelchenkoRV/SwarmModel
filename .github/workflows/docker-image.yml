@@ -46,7 +46,7 @@ jobs:
         uses: azure/aci-deploy@v1
         with:
           resource-group: ${{ secrets.RESOURCE_GROUP }}
-          dns-name-label: ${{ secrets.DNS_NAME_LABEL }}
+          dns-name-label: my-aci-api-label
           image: omelchenkorvcontainerregistry.azurecr.io/my-image-name:latest
           registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
           registry-username: ${{ secrets.REGISTRY_USERNAME }}
