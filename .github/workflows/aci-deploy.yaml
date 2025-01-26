@@ -1,5 +1,5 @@
 apiVersion: '2021-07-01'
-location: 'uksouth'
+location: 'ukwest'
 name: 'my-image-name'
 properties:
   containers:
