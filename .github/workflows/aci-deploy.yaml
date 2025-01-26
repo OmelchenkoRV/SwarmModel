@@ -1,0 +1,20 @@
+apiVersion: '2021-07-01'
+location: 'notrhuk'
+name: 'my-fastapi-app'
+properties:
+  containers:
+  - name: 'my-fastapi-app'
+    properties:
+      image: 'omelchenkorvcontainerregistry.azurecr.io/my-fastapi-app:latest'
+      resources:
+        requests:
+          cpu: 1.0
+          memoryInGB: 1.5
+      ports:
+      - port: 80
+  osType: 'Linux'
+  ipAddress:
+    type: 'Public'
+    ports:
+    - port: 80
+  restartPolicy: 'Always'
