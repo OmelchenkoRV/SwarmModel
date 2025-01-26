@@ -1,0 +1,20 @@
+apiVersion: '2021-07-01'
+location: 'uksouth'
+name: 'my-image-name'
+properties:
+  containers:
+  - name: 'my-image-name'
+    properties:
+      image: 'omelchenkorvcontainerregistry.azurecr.io/my-image-name:latest'
+      resources:
+        requests:
+          cpu: 1.0
+          memoryInGB: 1.5
+      ports:
+      - port: 80
+  osType: 'Linux'
+  ipAddress:
+    type: 'Public'
+    ports:
+    - port: 80
+  restartPolicy: 'Always'

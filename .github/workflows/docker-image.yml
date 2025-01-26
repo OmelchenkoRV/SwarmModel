@@ -24,11 +24,18 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Build the Docker image
-      run: |
-        docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag my-image-name:latest
+
+    - name: List Docker images
+      run: docker images
 
     - name: Push to Azure Container Registry
       run: |
         az acr login --name omelchenkorvcontainerregistry
-        docker tag my-image-name:$(date +%s) omelchenkorvcontainerregistry.azurecr.io/my-image-name:latest
+        docker tag my-image-name:latest omelchenkorvcontainerregistry.azurecr.io/my-image-name:latest
         docker push omelchenkorvcontainerregistry.azurecr.io/my-image-name:latest
+    - name: Deploy to Azure Container Instance
+      run: |
+        az container create --resource-group d-swarm --file .github/workflows/aci-deploy.yaml
+
+
