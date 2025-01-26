@@ -36,6 +36,6 @@ jobs:
         docker push omelchenkorvcontainerregistry.azurecr.io/my-image-name:latest
     - name: Deploy to Azure Container Instance
       run: |
-        az container create --resource-group d-swarm --file aci-deploy.yaml
+        az container create --resource-group d-swarm --file .github/workflows/aci-deploy.yaml
 
 
