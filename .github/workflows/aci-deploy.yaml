@@ -1,5 +1,5 @@
 apiVersion: '2021-07-01'
-location: 'notrhuk'
+location: 'uksouth'
 name: 'my-fastapi-app'
 properties:
   containers:
